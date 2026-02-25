@@ -1,0 +1,41 @@
+{
+  "$GMProject":"v1",
+  "%Name":"BLANK GAME",
+  "AudioGroups":[
+    {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
+  ],
+  "configs":{
+    "children":[],
+    "name":"Default",
+  },
+  "defaultScriptType":0,
+  "Folders":[],
+  "ForcedPrefabProjectReferences":[],
+  "IncludedFiles":[],
+  "isEcma":false,
+  "LibraryEmitters":[],
+  "MetaData":{
+    "IDEVersion":"2024.14.3.217",
+  },
+  "name":"BLANK GAME",
+  "resources":[
+    {"id":{"name":"Input","path":"objects/Input/Input.yy",},},
+    {"id":{"name":"obj_game","path":"objects/obj_game/obj_game.yy",},},
+    {"id":{"name":"obj_ui","path":"objects/obj_ui/obj_ui.yy",},},
+    {"id":{"name":"rm_game","path":"rooms/rm_game/rm_game.yy",},},
+    {"id":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},},
+    {"id":{"name":"rm_results","path":"rooms/rm_results/rm_results.yy",},},
+    {"id":{"name":"start_step","path":"scripts/start_step/start_step.yy",},},
+  ],
+  "resourceType":"GMProject",
+  "resourceVersion":"2.0",
+  "RoomOrderNodes":[
+    {"roomId":{"name":"rm_game","path":"rooms/rm_game/rm_game.yy",},},
+    {"roomId":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},},
+    {"roomId":{"name":"rm_results","path":"rooms/rm_results/rm_results.yy",},},
+  ],
+  "templateType":"game",
+  "TextureGroups":[
+    {"$GMTextureGroup":"","%Name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"Default","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
+  ],
+}
