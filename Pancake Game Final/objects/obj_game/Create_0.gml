@@ -37,3 +37,4 @@ result = ""; // "success" or "fail"
 // Flash prompt
 flash_timer = 0;
 show_prompt = true;
+
