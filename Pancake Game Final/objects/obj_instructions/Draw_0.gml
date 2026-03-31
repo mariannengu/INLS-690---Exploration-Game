@@ -1,6 +1,15 @@
 draw_clear(c_black);
 var cx = room_width / 2;
 var cy = room_height / 2;
+
+// Draw instructions background sprite (scaled to fit room)
+var sw = sprite_get_width(spr_game_instructions);
+var sh = sprite_get_height(spr_game_instructions);
+var scale_fit = min(room_width / sw, room_height / sh);
+var draw_x = cx - (sw * scale_fit) / 2;
+var draw_y = cy - (sh * scale_fit) / 2;
+draw_sprite_ext(spr_game_instructions, 0, draw_x, draw_y, scale_fit, scale_fit, 0, c_white, 1);
+
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 draw_set_font(fnt_main);
