@@ -51,16 +51,18 @@ switch (step_index) {
     ui_img = 0;
     break;
     case 4: // Pour onto Pan
-        if (state == "instruction") {
-            ui_sprite = spr_step_pan_1;
-        } else {
-            ui_sprite = spr_step_pan_2;
-        }
-        ui_img = 0;
+        ui_sprite = spr_step_pan_1;
+        ui_img    = 0;
         break;
     case 5: // Flip the Pancake
-        ui_sprite = spr_step_pan_3;
-        ui_img    = 0;
+        if (state == "instruction") {
+            ui_sprite = spr_step_pan_1;
+        } else if (state == "action") {
+            ui_sprite = spr_step_pan_2;
+        } else {
+            ui_sprite = spr_step_pan_3;
+        }
+        ui_img = 0;
         break;
     case 6: // Stack and Serve
         if (state == "feedback" && result == "success") {

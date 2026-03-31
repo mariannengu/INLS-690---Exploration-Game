@@ -2,11 +2,11 @@
 // mechanic: "hold", "single", "repeat"
 step_index = 0;
 steps = [
-    ["Pour Dry Mix",     "Pour the pancake mix into the bowl.\nHold SPACE and stop at the third tick.",  "hold"],
+    ["Pour Dry Mix",     "Pour the pancake mix into the bowl.\nHold SPACE and stop at the fifth tick.",  "hold"],
     ["Crack the Egg",    "Crack the egg into the bowl.\nPress SPACE!",                                   "single"],
-    ["Pour the Milk",    "Pour the milk into the bowl.\nHold SPACE and stop at the third tick.",         "hold"],
+    ["Pour the Milk",    "Pour the milk into the bowl.\nHold SPACE and stop at the fifth tick.",         "hold"],
     ["Mix the Batter",   "Stir the batter three times.\nPress SPACE three times!",                      "repeat"],
-    ["Pour onto Pan",    "Pour the batter onto the hot pan.\nHold SPACE and stop at the third tick.",    "hold"],
+    ["Pour onto Pan",    "Pour the batter onto the hot pan.\nHold SPACE and stop at the fifth tick.",    "hold"],
     ["Flip the Pancake", "Listen for the sizzle...\nWhen you hear the bell, press SPACE to flip!",      "single"],
     ["Stack and Serve",  "Press SPACE to stack each pancake\nwhen the audio is at its loudest.",         "single"]
 ];
@@ -18,7 +18,7 @@ state = "instruction";
 
 // Hold mechanic
 hold_ticks     = 0;
-tick_target    = 3;
+tick_target    = 5;
 tick_count     = 0;
 tick_interval  = 60; // frames between ticks
 last_tick_frame = 0;

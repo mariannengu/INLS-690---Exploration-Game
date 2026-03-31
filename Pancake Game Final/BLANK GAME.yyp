@@ -29,6 +29,7 @@
     {"id":{"name":"rm_gameover","path":"rooms/rm_gameover/rm_gameover.yy",},},
     {"id":{"name":"rm_instructions","path":"rooms/rm_instructions/rm_instructions.yy",},},
     {"id":{"name":"rm_title","path":"rooms/rm_title/rm_title.yy",},},
+    {"id":{"name":"spr_game_instructions","path":"sprites/spr_game_instructions/spr_game_instructions.yy",},},
     {"id":{"name":"spr_step_egg_1","path":"sprites/spr_step_egg_1/spr_step_egg_1.yy",},},
     {"id":{"name":"spr_step_egg_2","path":"sprites/spr_step_egg_2/spr_step_egg_2.yy",},},
     {"id":{"name":"spr_step_milk","path":"sprites/spr_step_milk/spr_step_milk.yy",},},
