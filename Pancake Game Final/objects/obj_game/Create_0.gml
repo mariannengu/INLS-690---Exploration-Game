@@ -8,7 +8,7 @@ steps = [
     ["Mix the Batter",   "Stir the batter three times.\nPress SPACE three times!",                      "repeat"],
     ["Pour onto Pan",    "Pour the batter onto the hot pan.\nHold SPACE and stop at the fifth tick.",    "hold"],
     ["Flip the Pancake", "Listen for the sizzle...\nWhen you hear the bell, press SPACE to flip!",      "single"],
-    ["Stack and Serve",  "Press SPACE to stack each pancake\nwhen the audio is at its loudest.",         "single"]
+    ["Stack and Serve",  "Press SPACE five times to stack your pancakes!",                               "repeat"]
 ];
 total_steps = array_length(steps);
 
@@ -25,7 +25,7 @@ last_tick_frame = 0;
 
 // Repeat mechanic
 repeat_count   = 0;
-repeat_target  = 3;
+repeat_target  = 3; // overridden per step in Step event
 
 // Feedback timer (how long to show success/fail message)
 feedback_timer = 0;
@@ -37,4 +37,3 @@ result = ""; // "success" or "fail"
 // Flash prompt
 flash_timer = 0;
 show_prompt = true;
-

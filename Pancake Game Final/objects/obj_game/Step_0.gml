@@ -14,6 +14,10 @@ if (state == "instruction") {
         tick_count    = 0;
         repeat_count  = 0;
         last_tick_frame = current_time;
+
+        // Set repeat_target per step
+        if (step_index == 3) repeat_target = 3; // Mix Batter
+        if (step_index == 6) repeat_target = 5; // Stack and Serve
     }
 }
 
@@ -23,23 +27,23 @@ else if (state == "action") {
     // --- HOLD mechanic ---
     if (mechanic == "hold") {
         if (keyboard_check(vk_space)) {
-    hold_ticks++;
-    if (hold_ticks mod tick_interval == 0) {
-        tick_count++;
-    }
-    if (tick_count == tick_target) {
-        result = "success";
-        state = "feedback";
-        feedback_timer = 0;
-    }
-}
-if (keyboard_check_released(vk_space)) {
-    if (state != "feedback") {
-        result = "fail";
-        state = "feedback";
-        feedback_timer = 0;
-    }
-}
+            hold_ticks++;
+            if (hold_ticks mod tick_interval == 0) {
+                tick_count++;
+            }
+            if (tick_count == tick_target) {
+                result = "success";
+                state = "feedback";
+                feedback_timer = 0;
+            }
+        }
+        if (keyboard_check_released(vk_space)) {
+            if (state != "feedback") {
+                result = "fail";
+                state = "feedback";
+                feedback_timer = 0;
+            }
+        }
     }
 
     // --- SINGLE PRESS mechanic ---

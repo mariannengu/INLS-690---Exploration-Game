@@ -15,9 +15,16 @@ var ui_sprite = -1;
 var ui_img    = 0;
 
 switch (step_index) {
-    case 0: // Pour Dry Mix
-        ui_sprite = spr_step_mix;
-        ui_img    = 0;
+    case 0: // Pour Dry Mix  (spr_step_mix_1/2/3)
+        if (state == "instruction") {
+            ui_sprite = spr_step_mix_1;
+        } else if (state == "action") {
+            if (tick_count <= 1)      ui_sprite = spr_step_mix_1;
+            else if (tick_count <= 3) ui_sprite = spr_step_mix_2;
+            else                      ui_sprite = spr_step_mix_3;
+        } else {
+            ui_sprite = spr_step_mix_3;
+        }
         break;
     case 1: // Crack the Egg
         if (state == "feedback" && result == "success") {
@@ -25,36 +32,35 @@ switch (step_index) {
         } else {
             ui_sprite = spr_step_egg_1;
         }
-        ui_img = 0;
         break;
-    case 2: // Pour the Milk
-        ui_sprite = spr_step_milk;
-        ui_img    = 0;
-        break;
-    case 3: // Mix the Batter
-    if (state == "action") {
-        // Create a visual tick that updates continuously
-        var visual_tick = floor(tick_count + (current_time mod 300) / 300);
-
-        if (visual_tick mod 2 == 0) {
-            ui_sprite = spr_step_whisk_1;
+    case 2: // Pour the Milk  (spr_step_milk_1/2/3)
+        if (state == "instruction") {
+            ui_sprite = spr_step_milk_1;
+        } else if (state == "action") {
+            if (tick_count <= 1)      ui_sprite = spr_step_milk_1;
+            else if (tick_count <= 3) ui_sprite = spr_step_milk_2;
+            else                      ui_sprite = spr_step_milk_3;
         } else {
-            ui_sprite = spr_step_whisk_2;
+            ui_sprite = spr_step_milk_3;
         }
-    } 
-    else if (state == "feedback" && result == "success") {
-        ui_sprite = spr_step_whisk_2;
-    } 
-    else {
-        ui_sprite = spr_step_whisk_1;
-    }
-    ui_img = 0;
-    break;
-    case 4: // Pour onto Pan
-        ui_sprite = spr_step_pan_1;
-        ui_img    = 0;
         break;
-    case 5: // Flip the Pancake
+    case 3: // Mix the Batter (whisk_1/2 alternating on each press)
+        if (state == "action") {
+            if (repeat_count mod 2 == 0) {
+                ui_sprite = spr_step_whisk_1;
+            } else {
+                ui_sprite = spr_step_whisk_2;
+            }
+        } else if (state == "feedback" && result == "success") {
+            ui_sprite = spr_step_whisk_2;
+        } else {
+            ui_sprite = spr_step_whisk_1;
+        }
+        break;
+    case 4: // Pour onto Pan — always spr_step_pan_1
+        ui_sprite = spr_step_pan_1;
+        break;
+    case 5: // Flip the Pancake  (pan_1=uncooked, pan_2=flipping, pan_3=flipped)
         if (state == "instruction") {
             ui_sprite = spr_step_pan_1;
         } else if (state == "action") {
@@ -62,17 +68,19 @@ switch (step_index) {
         } else {
             ui_sprite = spr_step_pan_3;
         }
-        ui_img = 0;
         break;
-    case 6: // Stack and Serve
+    case 6: // Stack and Serve — repeat_count 0-4 maps to plate_1 through plate_5
         if (state == "feedback" && result == "success") {
             ui_sprite = spr_step_plate_done;
-        } else if (state == "action") {
-            ui_sprite = spr_step_plate_2;
         } else {
-            ui_sprite = spr_step_plate_1;
+            switch (repeat_count) {
+                case 0:  ui_sprite = spr_step_plate_1; break;
+                case 1:  ui_sprite = spr_step_plate_2; break;
+                case 2:  ui_sprite = spr_step_plate_3; break;
+                case 3:  ui_sprite = spr_step_plate_4; break;
+                default: ui_sprite = spr_step_plate_5; break;
+            }
         }
-        ui_img = 0;
         break;
 }
 
@@ -81,7 +89,7 @@ if (ui_sprite != -1) {
     var sh = sprite_get_height(ui_sprite);
 
     var scale_cover = max(room_width / sw, room_height / sh);
-    var scale = scale_cover * 0.8; // zoom out a bit
+    var scale = scale_cover * 0.8;
 
     var draw_w = sw * scale;
     var draw_h = sh * scale;
@@ -128,12 +136,10 @@ else if (state == "action") {
         draw_set_color(c_yellow);
         draw_text_transformed(cx, cy + 80, "Ticks: " + string(tick_count) + " / " + string(tick_target), 1, 1, 0);
     }
-
     else if (mechanic == "single") {
         draw_set_color(c_white);
         draw_text_transformed(cx, cy, "Press SPACE!", 1.2, 1.2, 0);
     }
-
     else if (mechanic == "repeat") {
         draw_set_color(c_white);
         draw_text_transformed(cx, cy, "Keep pressing SPACE...", 1.2, 1.2, 0);
